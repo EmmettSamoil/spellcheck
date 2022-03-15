@@ -44,40 +44,44 @@ Main Menu
         selection = int(input("Selection: "))
         #Linear Search Spell Check
         if selection == 1:
-            word = input("Input a word:")
+            word = input("Input a word:").lower()
             startTimer = time.time()
             position = linearSearch(dictionary, word)
             endTimer = time.time()
-            totalTime = endTimer-startTimer
-            print(f"{word} is {'found' if position != -1 else 'not found'} in the dictionary. Run Time : {totalTime}")
+            searchTime = endTimer-startTimer
+            print(f"{word} is {'found' if position != -1 else 'not found'} in the dictionary. Run Time : {searchTime}")
             
         #Binary Search Spell Check
         elif selection == 2:
-            word = input("Input a word:")
+            word = input("Input a word:").lower()
             startTimer = time.time()
             position = binarySearch(dictionary, word)
             endTimer = time.time()
-            totalTime = endTimer-startTimer
-            print(f"{word} is {'found' if position != -1 else 'not found'} in the dictionary. Run Time : {totalTime}")
+            searchTime = endTimer-startTimer
+            print(f"{word} is {'found' if position != -1 else 'not found'} in the dictionary. Run Time : {searchTime}")
             
         #Linear Search AIW
         elif selection == 3:
-            word = input("Input a word:")
+            notFound = 0
             startTimer = time.time()
-            position = linearSearch(aliceWords, word)
+            print('Spell Checking...')
+            for word in aliceWords:
+                if linearSearch(dictionary, word) == -1:
+                    notFound += 1
             endTimer = time.time()
-            totalTime = endTimer-startTimer
-            print(f"{word} is {'found' if position != -1 else 'not found'} in Alice in Wonderland. Run Time : {totalTime}")
-            
+            searchTime = endTimer - startTimer
+            print(f'How many word were not found in the dictionary: {notFound} ({searchTime} seconds)')
         # #Binary Search AIW
         elif selection == 4:
-            word = input("Input a word:")
+            notFound = 0
             startTimer = time.time()
-            position = binarySearch(aliceWords, word)
+            print('Spell Checking...')
+            for word in aliceWords:
+                if binarySearch(dictionary, word) == -1:
+                    notFound += 1
             endTimer = time.time()
-            totalTime = endTimer-startTimer
-            print(f"{word} is {'found' if position != -1 else 'not found'} in Alice in Wonderland. Run Time : {totalTime}")
-            
+            searchTime = endTimer - startTimer
+            print(f'How many word were not found in the dictionary: {notFound} ({searchTime} seconds)')
         # #Exit
         elif selection == 5:
             doNotLeave = False
